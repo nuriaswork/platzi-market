@@ -13,6 +13,13 @@ repositories {
 }
 
 dependencies {
+	//buscar en maven repository https://mvnrepository.com/ "spring boot data jpa"
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	//buscar en maven reposiory "postgresql". usando JPA (framework acceso bbdd)
+	//Lo pone runtimeonly en lugar de implementation pq no lo necesitamos mientras codificamos, sino sólo al ejecutar.
+	runtimeOnly 'org.postgresql:postgresql'
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
