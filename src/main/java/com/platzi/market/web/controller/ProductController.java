@@ -4,8 +4,7 @@ import ch.qos.logback.core.pattern.parser.OptionTokenizer;
 import com.platzi.market.domain.Product;
 import com.platzi.market.domain.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,23 +15,29 @@ public class ProductController {
     @Autowired  //pq ProductService tiene la anotación de spring @Service
     private ProductService productService;
 
+    @GetMapping("/all")
     public List<Product> getAll(){
         return productService.getAll();
     }
 
-    public Optional<Product> getProduct(int id){
+    @GetMapping("/product/{id}")
+    public Optional<Product> getProduct(@PathVariable  int id){ //si no se llama igual que el parámetro se pone
+                                                            //@PathVariable("nombre_del_mapping")
         return  productService.getProduct(id);
     }
 
-    public Optional<List<Product>> getByCategory(int id){
+    @GetMapping("/category/{id}")  //si ponemos los dos GetMapping({id}) no sabría a cual llama pq los dos son int
+    public Optional<List<Product>> getByCategory(@PathVariable  int id){
         return productService.getByCategory(id);
     }
 
-    public Product save(Product product){
+    @PostMapping("/save")
+    public Product save(@RequestBody Product product){
         return productService.save(product);
     }
 
-    public boolean delete(int id){
+    @DeleteMapping("/delete/{id}")
+    public boolean delete(@PathVariable int id){
         return productService.delete(id);
     }
 
