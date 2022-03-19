@@ -106,4 +106,22 @@ public class Producto {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
+
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public List<ComprasProducto> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(List<ComprasProducto> compras) {
+        this.compras = compras;
+    }
+
 }

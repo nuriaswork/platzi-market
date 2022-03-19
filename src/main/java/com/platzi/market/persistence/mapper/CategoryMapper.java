@@ -17,6 +17,7 @@ public interface CategoryMapper {
     Category toCategory(Categoria categoria);
 
     @InheritInverseConfiguration
-    @Mapping(target = "productos", ignore = true)
+    @Mapping(target = "productos", ignore = true) //si da error compilación: unknown property "productos" in
+                                //result type Categoria. Es pq faltan los setter y getter de la propiedad.
     Categoria toCategoria(Category category);
 }

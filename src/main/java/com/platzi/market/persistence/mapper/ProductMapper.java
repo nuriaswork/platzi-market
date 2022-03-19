@@ -18,12 +18,16 @@ public interface ProductMapper {
             @Mapping(source = "precioVenta", target = "price"),
             @Mapping(source = "cantidadStock", target = "stock"),
             @Mapping(source = "estado", target = "active"),
-            @Mapping(source = "categoria", target = "category")
+            @Mapping(source = "categoria", target = "category"), //si da 2 errores compilación:
+            //No property named "categoria" exists in source parameter(s)
+            // unknown property "categoria" in result type Producto
+            //Es pq faltan los setter y getter de la propiedad.
     })
     Product toProduct(Producto producto);
     List<Product> toProducts(List<Producto> productos);
 
     @InheritInverseConfiguration
     @Mapping(target = "codigoBarras", ignore = true)
+    @Mapping(target = "compras", ignore = true)
     Producto toProducto(Product product);
 }
