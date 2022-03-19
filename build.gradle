@@ -20,6 +20,11 @@ dependencies {
 	//Lo pone runtimeonly en lugar de implementation pq no lo necesitamos mientras codificamos, sino sólo al ejecutar.
 	runtimeOnly 'org.postgresql:postgresql'
 
+	//MapStruct  https://mapstruct.org/documentation/installation/
+	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+	//para autocompletar instalar plugin https://plugins.jetbrains.com/plugin/10036-mapstruct-support
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

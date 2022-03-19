@@ -3,6 +3,7 @@ package com.platzi.market.persistence.entity;
 //EntityBeans = clases que mapean las tablas
 
 import javax.persistence.*;
+import java.util.List;
 
 //por convención, el nombre de la clase será en singular
 //con anotación Entity decimos a JPA que esta clase se mapea con una tabla
@@ -35,7 +36,20 @@ public class Producto {
 
     private  Boolean estado;
 
-    //para generar los getter & setter Code>Generate (Alt+Insertar)
+    // *** relaciones ***
+
+    @ManyToOne //una categoría tiene muchos productos; un producto tiene solo una categoría
+    @JoinColumn(name = "id_categoria", insertable = false, updatable = false)  //nombre de la FK física
+                                       //no insert ni update "en cascada", al insertar un producto, no se inserta categoría.
+    private Categoria categoria;
+
+
+    /*  Según el profe, esta no aporta valor, asi que se puede eliminar. No hace falta poner todas las relaciones
+    de la bbdd, solo las que necesitamos. */
+    @OneToMany(mappedBy = "compra")
+    private List<ComprasProducto> compras;
+
+    // *** para generar los getter & setter Code>Generate (Alt+Insertar) ***
 
     public Integer getIdProducto() {
         return idProducto;

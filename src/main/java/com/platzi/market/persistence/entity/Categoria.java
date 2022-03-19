@@ -1,6 +1,7 @@
 package com.platzi.market.persistence.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="categorias")
@@ -13,6 +14,10 @@ public class Categoria {
 
     private String descripcion;
     private Boolean estado;
+
+    // *** relaciones ***
+    @OneToMany(mappedBy = "categoria") //el atributo en Producto que tiene la relación ManyToOne
+    private List<Producto> productos;
 
     public Integer getIdCategoria() {
         return idCategoria;
