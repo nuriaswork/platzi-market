@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import java.util.List;
 import java.util.Optional;
 
-@Repository  //se indica a JAP que esta clase interactúa con la BD. Es un componente repository @Component es más general
+@Repository  //Indica a JAP que esta clase interactúa con la BD. Es un componente repository @Component es más general
 public class ProductoRepository implements ProductRepository {
 // implements ProductRepository para enfocar esta clase al dominio, en lugar de a una tabla
 // así independiza dominio de gestor bd, por ejemplo, a una bd no relacional: solo hay que cambiar el mapper
@@ -59,7 +59,7 @@ public class ProductoRepository implements ProductRepository {
 
     @Override
     public Product save(Product product) {
-        productMapper.toProduct(productoCrudRepository.save(productMapper.toProducto(product)));
+        return productMapper.toProduct(productoCrudRepository.save(productMapper.toProducto(product)));
     }
 
 /*
