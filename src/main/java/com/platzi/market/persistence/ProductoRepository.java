@@ -5,6 +5,7 @@ import com.platzi.market.domain.repository.ProductRepository;
 import com.platzi.market.persistence.crud.ProductoCrudRepository;
 import com.platzi.market.persistence.entity.Producto;
 import com.platzi.market.persistence.mapper.ProductMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.OneToMany;
@@ -16,8 +17,16 @@ public class ProductoRepository implements ProductRepository {
 // implements ProductRepository para enfocar esta clase al dominio, en lugar de a una tabla
 // así independiza dominio de gestor bd, por ejemplo, a una bd no relacional: solo hay que cambiar el mapper
 
-    private ProductoCrudRepository productoCrudRepository;
-    private ProductMapper productMapper;
+    @Autowired   //IoC principio SOLID: Spring crea y administra el objeto EL OBJ DEBE SER UN COMPONENTE DE SPRING
+    private ProductMapper productMapper; //Para poder ser un componente spring le pusimos en su clase el
+                            //component-model="spring", pq tiene anotacion @Mapper que no es spring sino de mapstruct
+                            // org.mapstruct
+
+
+    @Autowired   //IoC principio SOLID: Spring crea y administra el objeto. EL OBJ DEBE SER UN COMPONENTE DE SPRING
+    private ProductoCrudRepository productoCrudRepository;  //como extends CrudRepository, y este sí tiene anotación
+                            //de que es un componente spring: @NoRepositoryBean estereotipo de repositorio de spring:
+                            // org.springframework (es componentes de spring)
 
     @Override
     public List<Product> getAll(){
