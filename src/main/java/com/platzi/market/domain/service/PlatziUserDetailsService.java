@@ -6,11 +6,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 @Service
-public class PlatziUserDetailsServicer implements UserDetailsService {
+public class PlatziUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         //{noop} para indicar que la contraseña está en claro, no codificada
