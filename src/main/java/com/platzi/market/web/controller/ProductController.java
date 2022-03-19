@@ -3,6 +3,10 @@ package com.platzi.market.web.controller;
 import ch.qos.logback.core.pattern.parser.OptionTokenizer;
 import com.platzi.market.domain.Product;
 import com.platzi.market.domain.service.ProductService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +22,21 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/all")
+    @ApiOperation("Obtiene todos los productos.") //swagger2
+    @ApiResponse(code = 200, message = "OK")  //swagger2
     public ResponseEntity<List<Product>> getAll(){
         return new ResponseEntity<>( productService.getAll(), HttpStatus.OK );
     }
 
     @GetMapping("/product/{id}")
-    public ResponseEntity<Product> getProduct(@PathVariable  int id){ //si no se llama igual que el parámetro se pone
+    @ApiOperation("Busca un producto por el id.") //swagger2
+    @ApiResponses({
+            @ApiResponse(code=200,message = "OK"),
+            @ApiResponse(code=404, message = "No encontrado")
+    })
+    public ResponseEntity<Product> getProduct(
+            @ApiParam(value = "Identificador del producto", required = true,example = "2")
+            @PathVariable  int id){ //si no se llama igual que el parámetro se pone
                                                             //@PathVariable("nombre_del_mapping")
         return  productService.getProduct(id).
                 map(p-> new ResponseEntity<>(p, HttpStatus.OK))
